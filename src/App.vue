@@ -1,10 +1,15 @@
 <template>
-  <h3>I am an App!</h3>
+  <AppHeader />
 </template>
 
 <script>
+import AppHeader from "./component/AppHeader";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    AppHeader
+  }
 };
 </script>
 
