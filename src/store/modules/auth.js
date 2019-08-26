@@ -22,7 +22,7 @@ const actions = {
   }
   //attempting to login here (creating api login function)
   login: ()=>{
-    api.login();
+    api.login(); //(instaltly navigate away form the appilication)
   }
 };
 
@@ -32,3 +32,13 @@ const mutations = {
     state.token = token;
   }
 };
+
+
+// exporting this module to use by other files
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations
+}
