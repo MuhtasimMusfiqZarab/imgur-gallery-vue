@@ -19,9 +19,9 @@ const actions = {
   // commit is a function used to call mutation defined underneath ( thus we dont directly call mutation but we use the commit function)
   logout: ({ commit }) => {
     commit("setToken", null); //2nd argument is the token argument put inside the setToken mutation
-  }
+  },
   //attempting to login here (creating api login function)
-  login: ()=>{
+  login: () => {
     api.login(); //(instaltly navigate away form the appilication)
   }
 };
@@ -33,7 +33,6 @@ const mutations = {
   }
 };
 
-
 // exporting this module to use by other files
 
 export default {
@@ -41,4 +40,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};
