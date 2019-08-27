@@ -5,7 +5,8 @@ import api from "../../api/imgur";
 import qs from "qs";
 
 const state = {
-  token: null //initial
+  // without initializing with null, we need to check the localStorage for this specified domain if token exists or not (data persistance)
+  token: window.localStorage.getItem("imgur_token") //initially this is null
 };
 
 const getters = {
@@ -36,6 +37,9 @@ const actions = {
     const query = qs.parse(hash.replace("#", "")); // the result is an object
     // being an object, query has the access token property inside this
     commit("setToken", query.access_token); // calling setToken mutation with value
+
+    //saving this token in localStorage for data persistancy
+    window.localStorage.setItem("imgur_token", query.access_token);
   }
 };
 
