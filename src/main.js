@@ -5,6 +5,8 @@ import VueRouter from "vue-router";
 import App from "./App";
 // importing all the modules we wrote (to be used inside of the router)
 import AuthHandler from "./components/AuthHandler";
+import ImageList from "./components/ImageList";
+import UploadForm from "./components/UploadForm";
 
 // hooking vuex store (the instance we have created)(what we created)
 import store from "./store";
@@ -12,10 +14,13 @@ import store from "./store";
 // tell vue library about the existance of the vue router
 Vue.use(VueRouter); //(initial handshake)
 //create vue router instance (with initial configuration(about the route available inside of out application))
-const router = new VueRouter({
+// we exporting this router instance because we want to use it to programatically navigate users to other location (redirect without hard refresh)
+export const router = new VueRouter({
   mode: "history", // the string history tells to use browser router mode (not hash router) whenever to look at the url (reason: fetch url and route accordingly)
   routes: [
     // array of objects
+    { path: "/", component: ImageList },
+    { path: "/upload", component: UploadForm },
     { path: "/oauth2/callback", component: AuthHandler }
   ]
 });

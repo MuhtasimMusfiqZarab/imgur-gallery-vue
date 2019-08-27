@@ -3,6 +3,8 @@
 //import the api file
 import api from "../../api/imgur";
 import qs from "qs";
+// this is needed for automatically navigate user around our application (without full page reload)
+import { router } from "../../main";
 
 const state = {
   // without initializing with null, we need to check the localStorage for this specified domain if token exists or not (data persistance)
@@ -24,6 +26,7 @@ const actions = {
   // commit is a function used to call mutation defined underneath ( thus we dont directly call mutation but we use the commit function)
   logout: ({ commit }) => {
     commit("setToken", null); //2nd argument is the token argument put inside the setToken mutation
+    window.localStorage.removeItem("imgur_token"); // removing data from storage
   },
   //attempting to login here (creating api login function)
   login: () => {
@@ -37,9 +40,10 @@ const actions = {
     const query = qs.parse(hash.replace("#", "")); // the result is an object
     // being an object, query has the access token property inside this
     commit("setToken", query.access_token); // calling setToken mutation with value
-
     //saving this token in localStorage for data persistancy
     window.localStorage.setItem("imgur_token", query.access_token);
+    // changing the url forcefully after getting the access_token from the redirecrted url
+    router.push("/"); // without hard reload
   }
 };
 
