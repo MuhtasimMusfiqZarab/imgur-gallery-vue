@@ -18,6 +18,10 @@ const actions = {
     const response = await api.fetchImages(rootState.auth.token);
     //saving to state
     commit("setImages", response.data.data);
+  },
+
+  async uploadImages({ commit }, images) {
+    console.log(images);
   }
 };
 

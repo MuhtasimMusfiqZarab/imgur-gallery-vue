@@ -1,13 +1,18 @@
 <template>
   <div class="dropper">
-    <input type="file" />
+    <!-- sending necessary data from the event (not the whole event) -->
+    <!-- event.target.files contains the images, event obj comes from trigering @change, thats why $ sign is used -->
+    <input type="file" @change="uploadImages($event.target.files)" multiple accept="image/*" />
     <span>Drag Files here!</span>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "UploadForm"
+  name: "UploadForm",
+  methods: mapActions(["uploadImages"])
 };
 </script>
 
