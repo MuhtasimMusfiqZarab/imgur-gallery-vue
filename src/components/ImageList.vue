@@ -1,7 +1,10 @@
 <template>
-  <div class="images">
-    <!-- src comes from a variable thus we are using : (bindling) -->
-    <img v-for="image in allImages" :src="image.link" :key="image.id" />
+  <div>
+    <div v-if="isLoggedIn" class="images">
+      <!-- src comes from a variable thus we are using : (bindling) -->
+      <img v-for="image in allImages" :src="image.link" :key="image.id" />
+    </div>
+    <h2 v-else>Please Log in to see the contents</h2>
   </div>
 </template>
 
@@ -11,7 +14,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ImageList",
   // computed property to read info into our component & make it accessible in our template
-  computed: mapGetters(["allImages"]),
+  computed: mapGetters(["allImages", "isLoggedIn"]),
   methods: mapActions(["fetchImages"]), // action located inside of images.js store module
   created() {
     this.fetchImages();
@@ -32,5 +35,9 @@ img {
     margin-right: 10px;
   }
   margin-bottom: 10px;
+}
+
+h2 {
+  text-align: center;
 }
 </style>
