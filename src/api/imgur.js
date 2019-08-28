@@ -29,6 +29,25 @@ export default {
         Authorization: `Bearer ${access_token}`
       }
     });
+  },
+  uploadImages(images, access_token) {
+    //converting array like objects (Half an array) to array(Real array) using Array.from to iterate over each item as an arry
+    // promises contains array of all promises thrown for each image
+    const promises = Array.from(images).map(image => {
+      // creating formData image file & attach key value with it as api doc says
+      const formData = new FormData(); //FormData is global js object
+      formData.append("image", image); // now formData object contains the image (converting image reference to a file) (turns image from reference to a file)
+      //post request for images
+      return axios.post(`${ROOT_URL}/3/image`, formData, {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      }); //fromData is the image, last arg is for configuration object
+    });
+
+    // wait for entire promises to be resolved before we say that uplaod is done
+    //Promise.all takes array of promises and waits for all to resolved ... then promis.all is gonna resolved
+    return Promise.all(promises);
   }
 };
 

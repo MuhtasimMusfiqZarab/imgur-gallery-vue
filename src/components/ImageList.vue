@@ -22,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .images {
   display: flex;
+  flex-wrap: wrap;
 }
 
 img {

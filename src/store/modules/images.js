@@ -1,5 +1,6 @@
 // this is to work with images
 import api from "../../api/imgur";
+import { router } from "../../main"; // this is for redirection
 
 const state = {
   images: []
@@ -19,9 +20,15 @@ const actions = {
     //saving to state
     commit("setImages", response.data.data);
   },
-
-  async uploadImages({ commit }, images) {
-    console.log(images);
+  // receiving images from input event as argument
+  async uploadImages({ rootState }, images) {
+    // console.log(images);
+    // Get the access token
+    const { token } = rootState.auth; // takes token from state of auth module
+    // Call api to upload images
+    await api.uploadImages(images, token);
+    //Redirect to other URL to see the uploaded images
+    router.push("/");
   }
 };
 
