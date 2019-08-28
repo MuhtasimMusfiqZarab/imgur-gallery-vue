@@ -27,6 +27,10 @@ export default {
 
 img {
   // hight is auto defined
-  width: 33.3%;
+  width: 300px;
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+  margin-bottom: 10px;
 }
 </style>
