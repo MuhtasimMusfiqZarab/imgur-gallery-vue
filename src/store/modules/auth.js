@@ -55,7 +55,6 @@ const mutations = {
 };
 
 // exporting this module to use by other files
-
 export default {
   state,
   getters,

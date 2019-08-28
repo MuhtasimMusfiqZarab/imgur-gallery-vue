@@ -2,6 +2,7 @@
 
 //this takes querystring object and turn it into url safe query string
 import qs from "qs";
+import axios from "axios";
 
 const CLIENT_ID = "1346f814942f27f"; // this is my client id from imgur
 const ROOT_URL = "https://api.imgur.com";
@@ -18,6 +19,16 @@ export default {
     window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(
       querystring
     )}`;
+  },
+  // THis is for fetching images from imgur API
+  fetchImages(access_token) {
+    // 1st argument is the endpoint we are making request to
+    //2nd argument is an object with collection of options to cusmomize the request we are making
+    return axios.get(`${ROOT_URL}/3/account/me/images`, {
+      headers: {
+        Authorization: `Bearer ${access_token}`
+      }
+    });
   }
 };
 
