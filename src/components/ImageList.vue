@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="images">
     <!-- src comes from a variable thus we are using : (bindling) -->
     <img v-for="image in allImages" :src="image.link" :key="image.id" />
   </div>
@@ -18,3 +18,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.images {
+  display: flex;
+}
+
+img {
+  // hight is auto defined
+  width: 33.3%;
+}
+</style>

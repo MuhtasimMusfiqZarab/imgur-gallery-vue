@@ -2,7 +2,9 @@
   <div>
     <AppHeader />
     <!-- This tells view router that any time it matches a route, take the component & stick it right here  -->
-    <router-view />
+    <div class="ui container">
+      <router-view />
+    </div>
   </div>
 </template>
 
