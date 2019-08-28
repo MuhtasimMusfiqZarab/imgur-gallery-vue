@@ -12,16 +12,16 @@ const getters = {
 const actions = {
   // 1st argument of action is always an object with some properties {commit(for mutation), rootState(reff to all of the state held inside of vuex store/ instance)}
   // rootState lets us access to other modules and let us access their state held inside of them
-  async fetchImages({ rootState }) {
+  async fetchImages({ rootState, commit }) {
     // auth is the name of the module written inside of index.js
     // auth has token property inside of state object
     const response = await api.fetchImages(rootState.auth.token);
-    console.log(response);
     //saving to state
+    commit("setImages", response.data.data);
   }
 };
 
-const mutatations = {
+const mutations = {
   setImages: (state, images) => {
     state.images = images;
   }
@@ -32,5 +32,5 @@ export default {
   state,
   getters,
   actions,
-  mutatations
+  mutations
 };
